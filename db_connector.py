@@ -150,10 +150,10 @@ def obtener_orden(orden_trabajo_id):
 # FUNCIONES DE CONVENIENCIA para los procedimientos de la tabla 'facturas'
 # ----------------------------------------------------------------------
 
-def generar_factura_desde_orden(orden_trabajo_id):
-    """Llamar al SP generar_factura_desde_orden"""
-    print("\n--- INVOCACIÓN: GENERAR FACTURA ---")
-    return execute_stored_procedure('generar_factura_desde_orden', orden_trabajo_id)
+# def generar_factura_desde_orden(orden_trabajo_id):
+#     """Llamar al SP generar_factura_desde_orden"""
+#     print("\n--- INVOCACIÓN: GENERAR FACTURA ---")
+#     return execute_stored_procedure('generar_factura_desde_orden', orden_trabajo_id)
 
 # ----------------------------------------------------------------------
 # FUNCIONES DE CONVENIENCIA para los procedimientos de la tabla 'pagos'
@@ -292,7 +292,7 @@ def eliminar_proveedor(proveedor_id):
     return execute_stored_procedure('eliminar_proveedor', proveedor_id)
 
 # ----------------------------------------------------------------------
-# FUNCIONES DE CONVENIENCIA para los procedimientos de la tabla 'proveedor'
+# FUNCIONES DE CONVENIENCIA para los procedimientos de la tabla 'factura'
 # ----------------------------------------------------------------------
 
 def crear_factura(orden_trabajo_id, subtotal, iva, total):

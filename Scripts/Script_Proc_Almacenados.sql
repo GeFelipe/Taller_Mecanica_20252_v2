@@ -85,17 +85,17 @@ DELIMITER ;
 USE taller_mecanica;
 DELIMITER $$
 
-CREATE PROCEDURE agregar_nueva_cita (
+CREATE PROCEDURE crear_cita (
     IN cliente_id_param INT,
     IN vehiculo_id_param INT,
-    IN fecha_cita_param DATETIME,
-    IN descripcion_param VARCHAR(255)
+    IN fecha_hora_param DATETIME,
+    IN motivo_param VARCHAR(200)
 )
 BEGIN
     INSERT INTO 
-        Cita (ClienteID, VehiculoID, EmpleadoID, FechaCita, Descripcion)
+        Cita (ClienteID, VehiculoID, FechaHora, Motivo)
     VALUES 
-        (cliente_id_param, vehiculo_id_param, empleado_id_param, fecha_cita_param, descripcion_param);
+        (cliente_id_param, vehiculo_id_param, fecha_hora_param, motivo_param);
 END$$
 
 DELIMITER ;
@@ -105,25 +105,21 @@ DELIMITER ;
 USE taller_mecanica;
 DELIMITER $$
 
-CREATE PROCEDURE obtener_citas_cliente (
-    IN cliente_id INT
+CREATE PROCEDURE obtener_cita_por_id (
+    IN cita_id_param INT
 )
 BEGIN
     SELECT 
-        c.CitaID,
-        c.FechaCita,
-        c.Descripcion,
-        c.Estado,
-        v.Placa AS Vehiculo,
-        e.Nombre AS EmpleadoNombre,
-        e.Apellido AS EmpleadoApellido
+        CitaID, 
+        ClienteID, 
+        VehiculoID, 
+        FechaHora, 
+        Motivo, 
+        Estado
     FROM 
-        Cita c
-        INNER JOIN Vehiculo v ON c.VehiculoID = v.VehiculoID
-        LEFT JOIN Empleado e ON c.EmpleadoID = e.EmpleadoID
+        Cita
     WHERE 
-        c.ClienteID = cliente_id
-    ORDER BY c.FechaCita DESC;
+        CitaID = cita_id_param;
 END$$
 
 DELIMITER ;
@@ -134,16 +130,16 @@ USE taller_mecanica;
 DELIMITER $$
 
 CREATE PROCEDURE actualizar_estado_cita (
-    IN cita_id INT,
-    IN estado VARCHAR(50)
+    IN cita_id_param INT,
+    IN nuevo_estado ENUM('Pendiente','Atendida','Cancelada')
 )
 BEGIN
     UPDATE 
         Cita
     SET 
-        Estado = estado
+        Estado = nuevo_estado
     WHERE 
-        CitaID = cita_id;
+        CitaID = cita_id_param;
 END$$
 
 DELIMITER ;
@@ -154,11 +150,13 @@ USE taller_mecanica;
 DELIMITER $$
 
 CREATE PROCEDURE eliminar_cita (
-    IN cita_id INT
+    IN cita_id_param INT
 )
 BEGIN
-    DELETE FROM Cita
-    WHERE CitaID = cita_id;
+    DELETE FROM 
+        Cita
+    WHERE 
+        CitaID = cita_id_param;
 END$$
 
 DELIMITER ;

@@ -418,24 +418,24 @@ def mostrar_resultado_consulta(columns, results):
     print("\n--- FIN DEL PROGRAMA ---") """
 
 def main():
-    print("\n--- INICIO: PRUEBAS CRUD PARA LA TABLA 'Cita' ---")
+#     print("\n--- INICIO: PRUEBAS CRUD PARA LA TABLA 'Cita' ---")
     
     # IDs EXISTENTES PARA PRUEBA
     CLIENTE_ID_EXISTENTE = 1 
     VEHICULO_ID_EXISTENTE = 5
-    CITA_ID_PRUEBA = 2 # ID de la cita para pruebas
+    # CITA_ID_PRUEBA = 2 # ID de la cita para pruebas
 
     # 1. --- TAREA 1: Creación (INSERT) ---
-    #print("\n[ TAREA 1: Ejecutar Creación de Nueva Cita ]")
+    print("\n[ TAREA 1: Ejecutar Creación de Nueva Cita ]")
     
     # Parámetros para el SP: crear_cita
     cliente_id = CLIENTE_ID_EXISTENTE
     vehiculo_id = VEHICULO_ID_EXISTENTE
-    fecha_hora = "2025-11-20 09:00:00" 
-    motivo = "Revisión general y cambio de aceite."
+    fecha_hora = "2025-11-26 12:00:00" 
+    motivo = "Cambio de llantas"
     
-    # Llamada al SP: crear_cita
-    #crear_cita(cliente_id, vehiculo_id, fecha_hora, motivo)
+    # # Llamada al SP: crear_cita
+    crear_cita(cliente_id, vehiculo_id, fecha_hora, motivo)
 
     # # 2. --- TAREA 2: Consulta por ID (SELECT) ---
     #print("\n[ TAREA 2: Ejecutar Consulta de Cita Existente ]")
@@ -460,15 +460,15 @@ def main():
 
 
     # # 4. --- TAREA 4: Eliminación (DELETE) ---
-    print("\n[ TAREA 4: Ejecutar Eliminación de Cita ]")
+    #print("\n[ TAREA 4: Ejecutar Eliminación de Cita ]")
     
     # # Llamada al SP: eliminar_cita
-    eliminar_cita(CITA_ID_PRUEBA)
+    #eliminar_cita(CITA_ID_PRUEBA)
     
     # # Opcional: Volver a consultar para verificar la Eliminación
-    print("\n[ TAREA 4.1: Verificar Eliminación ]")
-    columns, results = obtener_cita_por_id(CITA_ID_PRUEBA)
-    mostrar_resultado_consulta(columns, results)
+    #print("\n[ TAREA 4.1: Verificar Eliminación ]")
+    #columns, results = obtener_cita_por_id(CITA_ID_PRUEBA)
+    #mostrar_resultado_consulta(columns, results)
 
     print("\n--- FIN DEL PROGRAMA ---")
 
